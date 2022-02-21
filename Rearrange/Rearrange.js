@@ -1,3 +1,9 @@
+/**
+ * Method takes a sentence and arranges it according to the numbers
+ * hidden within each word.
+ * @param {string} sentence 
+ * @returns 
+ */
 export const rearrange = (sentence) => {
     let words = sentence.split(" ")
     let sortedWords = []
