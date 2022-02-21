@@ -10,10 +10,10 @@ export const rearrange = (sentence) => {
     words.forEach(word => {
         for (let letter of word) {
             if (!isNaN(letter)) {
-                sortedWords[letter] = word.replace(letter, "")
+                sortedWords[letter-1] = word.replace(letter, "")
                 break
             }
         }
     })
-    return sortedWords.join(" ").trim()
+    return sortedWords.join(" ")
 }
