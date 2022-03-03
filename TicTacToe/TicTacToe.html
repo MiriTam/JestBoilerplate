@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Tic Tac Toe</h1>
+        <div>
+            <span style="display: inline-block; width: 100%;">
+                <button id="00" onClick="setTicOrTac(0, 0)">
+                    Set tic or tac
+                </button>
+                <button id="01" onClick="setTicOrTac(0, 1)">
+                    Set tic or tac
+                </button>
+                <button id="02" onClick="setTicOrTac(0, 2)">
+                    Set tic or tac
+                </button>
+            </span>
+            <span style="display: inline-block; width: 100%;">
+                <button id="10" onClick="setTicOrTac(1, 0)">
+                    Set tic or tac
+                </button>
+                <button id="11" onClick="setTicOrTac(1, 1)">
+                    Set tic or tac
+                </button>
+                <button id="12" onClick="setTicOrTac(1, 2)">
+                    Set tic or tac
+                </button>
+            </span>
+            <span style="display: inline-block; width: 100%">
+                <button id="20" onClick="setTicOrTac(2, 0)">
+                    Set tic or tac
+                </button>
+                <button id="21" onClick="setTicOrTac(2, 1)">
+                    Set tic or tac
+                </button>
+                <button id="22" onClick="setTicOrTac(2, 2)">
+                    Set tic or tac
+                </button>
+            </span>
+        </div>
+    </body>
+        <script setup>
+            let button00 = document.getElementById("00")
+            let button01 = document.getElementById("01")
+            let button02 = document.getElementById("02")
+            let button10 = document.getElementById("10")
+            let button11 = document.getElementById("11")
+            let button12 = document.getElementById("12")
+            let button20 = document.getElementById("20")
+            let button21 = document.getElementById("21")
+            let button22 = document.getElementById("22")
+
+            let buttonBoard = []
+            buttonBoard.push([button00, button01, button02])
+            buttonBoard.push([button10, button11, button12])
+            buttonBoard.push([button20, button21, button22])
+
+            let tic = true
+            const board = []
+            function fillBoard() {
+                for (let i = 0; i < 3; i++) {
+                    let row = [null, null, null]
+                    board.push(row)
+                }
+            }
+            fillBoard()
+
+            function setTicOrTac(row, column) {
+                console.log(row + " " + column)
+                board[row][column] = tic
+                let button = buttonBoard[row][column]
+                if (tic) {
+                    button.innerText = "X"
+                } else {
+                    button.innerText = "O"
+                }
+                button.disabled = true
+
+                if (checkIfWon()) {
+                    if (tic) {
+                        alert("Tic has won!")
+                    } else {
+                        alert("Tac has won!")
+                    }
+                } else {
+                    tic = !tic
+                }
+            }
+
+            function checkIfWon() {
+                //Check rows and columns
+                for (let i = 0; i < 3; i++) {
+                    if (board[i][0] !== null) {
+                        if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                            return true
+                        }
+                    }
+                    if (board[0][i] !== null) {
+                        if (board[0][i] === board[1][i] && board[2][i]) {
+                            return true
+                        }
+                    }
+                }
+
+                //Check criss 
+                if (board[0][0] !== null) {
+                    if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+                        return true
+                    }
+                }
+
+                //Check cross
+                if (board[2][0] !== null) {
+                    if (board[2][0] === board[1][1] && board[0][2]) {
+                        return true
+                    }
+                }
+                return false
+            }
+        </script>
+</html>
